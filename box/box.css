@@ -1,0 +1,25 @@
+.search {
+    display: block;
+    width: 90%;
+    height: 40px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/*
+* 阴影
+* h-shadow 必需 水平阴影的位置 允许负值
+* v-shadow 必需 垂直阴影的位置 允许负值
+* blur 可选 模糊距离
+* h-shadow 可选 阴影的大小
+* v-shadow 可选 阴影的颜色。
+* v-shadow 可选 从外层的阴影（开始时）改变阴影内侧阴影
+*/
+.shadow {
+  -o-box-shadow: 10px 10px 5px #888888;
+  -moz-box-shadow: 10px 10px 5px #888888;
+  -ms-box-shadow: 10px 10px 5px #888888;
+  -webkit-box-shadow: 10px 10px 5px #888888;
+  box-shadow: 10px 10px 5px #888888;
+}
