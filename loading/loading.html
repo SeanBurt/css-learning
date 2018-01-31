@@ -8,7 +8,7 @@
 		<meta name="format-detection" content="telephone=no" />
 		<meta content="email=no" name="format-detection" />
 		<title>animation</title>
-		<link rel="stylesheet" href="css/loading.css" />
+		<link rel="stylesheet" href="./loading.css" />
 	</head>
 
 	<body>
@@ -19,6 +19,54 @@
 			<div class="list__item"></div>
 			<div class="list__item"></div>
 		</div>
+		<div>
+			<canvas id="process" width="200" height="200" data-process="85"></canvas>
+		</div>
+		<script>
+			function drawCircle(ctx, x, y, r, sAngle, eAngle, color) {
+				ctx.beginPath();
+				ctx.moveTo(x, y);
+				ctx.arc(x, y, r, sAngle, eAngle);
+				ctx.closePath();
+				ctx.fillStyle = color;
+				ctx.fill();
+			}
+			function drawTxt (opt) {
+				ctx.font = opt.font;
+				ctx.fillStyle = opt.fillStyle;
+				ctx.textAlign = opt.textAlign;
+				ctx.textBaseline = opt.textBaseline;
+				ctx.moveTo(opt.x, opt.y);
+				ctx.fillText(opt.txt, opt.x, opt.y);
+			}
+			var c = document.getElementById('process');
+			var process = c.getAttribute('data-process');
+			var ctx = c.getContext('2d');
+			var count = 0;
+			function start () {
+				if (count <= +process) {
+					// 画灰色的圆
+					drawCircle(ctx, 100, 100, 80, 0, Math.PI*2, '#F6F6F6');
+					// 画进度环
+					drawCircle(ctx, 100, 100, 80, Math.PI*1.5, Math.PI*(1.5+2*count/100), '#FF9600');
+					// 画内填充圆
+					drawCircle(ctx, 100, 100, 60, 0, Math.PI*2, '#FFF');
+					count++;
+					window.requestAnimationFrame(start)
+					// 填充文字
+					drawTxt({
+						font: 'bold 20pt Microsoft YaHei',
+						fillStyle: '#333',
+						textAlign: 'center',
+						textBaseline: 'middle',
+						x: 100,
+						y: 100,
+						txt: count+'%'
+					})
+				}
+			}
+			window.requestAnimationFrame(start)
+		</script>
 	</body>
 
 </html>
